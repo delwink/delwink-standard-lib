@@ -8,14 +8,17 @@ const uint8_t LOGGING;
 
 char *get_log_file_name(const char *);
 
-void log_init(const char *f)
+char *log_init(const char *f)
 {
-    LOG_FILE = fopen(get_log_file_name(f), "w");
+    char *logfilename = get_log_file_name(f);
+    LOG_FILE = fopen(logfilename, "w");
     if (LOG_FILE == NULL) {
         LOGGING = 0;
     } else {
         LOGGING = 1;
+        return logfilename;
     }
+    return NULL;
 }
 
 char *get_log_file_name(const char *loc)

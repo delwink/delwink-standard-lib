@@ -9,8 +9,9 @@ extern const uint8_t LOGGING;
 
 /**
  * Initializes logging to a file in `path`
+ * Returns full path to log file
  */
-void log_init(char *path);
+char *log_init(char *path);
 
 #define log_info(M, ...) {\
     fprintf(stdout, "[INFO] " M "\n", ##__VA_ARGS__);\
