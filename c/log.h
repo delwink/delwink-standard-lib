@@ -4,15 +4,13 @@
 #include <stdio.h>
 #include <stdint.h>
 
-#define PROG "FIXME"
-
 extern const FILE *LOG_FILE;
 extern const uint8_t LOGGING;
 
 /**
- * Initializes logging to `file`
+ * Initializes logging to a file in `path`
  */
-void log_init(char *file);
+void log_init(char *path);
 
 #define log_info(M, ...) {\
     fprintf(stdout, "[INFO] " M "\n", ##__VA_ARGS__);\
