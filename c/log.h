@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <stdint.h>
 
-extern const FILE *LOG_FILE;
+const FILE *LOG_FILE;
 extern const uint8_t LOGGING;
 
 /**

@@ -3,7 +3,7 @@
 #include "log.h"
 #include "datestamp.h"
 
-const FILE *LOG_FILE;
+FILE *LOG_FILE;
 const uint8_t LOGGING;
 
 char *get_log_file_name(const char *);
