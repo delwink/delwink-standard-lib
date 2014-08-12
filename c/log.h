@@ -27,7 +27,8 @@ char *log_init(char *path);
     } else {\
         fprintf(stderr, "[WARNING] " M "\n", ##__VA_ARGS__);\
         if (LOGGING) fprintf(LOG_FILE, "[WARNING] " M "\n", ##__VA_ARGS__);\
-    }\}
+    }\
+}
 
 #define log_err(M, ...) {\
     if (errno) {\
