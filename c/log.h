@@ -8,6 +8,7 @@
 
 extern FILE *LOG_FILE;
 extern const uint8_t LOGGING;
+extern int delwink_errno;
 
 /**
  * Initializes logging to a file in `path`
@@ -22,8 +23,9 @@ char *log_init(char *path);
 
 #define log_warn(M, ...) {\
     if (errno) {\
-        fprintf(stderr, "[WARNING] " M ": %s\n", ##__VA_ARGS__, strerror(errno));\
-        if (LOGGING) fprintf(LOG_FILE, "[WARNING] " M ": %s\n", ##__VA_ARGS__, strerror(errno));\
+        delwink_errno = errno;\
+        fprintf(stderr, "[WARNING] " M ": %s\n", ##__VA_ARGS__, strerror(delwink_errno));\
+        if (LOGGING) fprintf(LOG_FILE, "[WARNING] " M ": %s\n", ##__VA_ARGS__, strerror(delwink_errno));\
     } else {\
         fprintf(stderr, "[WARNING] " M "\n", ##__VA_ARGS__);\
         if (LOGGING) fprintf(LOG_FILE, "[WARNING] " M "\n", ##__VA_ARGS__);\
@@ -32,8 +34,9 @@ char *log_init(char *path);
 
 #define log_err(M, ...) {\
     if (errno) {\
-        fprintf(stderr, "[FATAL] " M ": %s\n", ##__VA_ARGS__, strerror(errno));\
-        if (LOGGING) fprintf(LOG_FILE, "[FATAL] " M ": %s\n", ##__VA_ARGS__, strerror(errno));\
+        delwink_errno = errno;\
+        fprintf(stderr, "[FATAL] " M ": %s\n", ##__VA_ARGS__, strerror(delwink_errno));\
+        if (LOGGING) fprintf(LOG_FILE, "[FATAL] " M ": %s\n", ##__VA_ARGS__, strerror(delwink_errno));\
     } else {\
         fprintf(stderr, "[FATAL] " M "\n", ##__VA_ARGS__);\
         if (LOGGING) fprintf(LOG_FILE, "[FATAL] " M "\n", ##__VA_ARGS__);\
